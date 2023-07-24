@@ -1,17 +1,17 @@
 import React from "react";
 import "./Section.css";
-export default function FirstHeader() {
+export default function FirstHeader({sub}) {
   let label = window.location.pathname.slice(1)
   label = label.toUpperCase().at(0) + label.slice(1)
   return (
     <div>
       <header
         className="d-flex flex-wrap "
-        style={{ justifyContent: "space-between" }}
+        style={{ justifyContent: "space-between",direction:"rtl" }}
       >
         <div className=" "style={{ width:"contain" }}>
           <div className="w-100 ">
-            <h3 style={{ display: "flex" }}>{label}</h3>
+            <h3 style={{ display: "flex" }}>{sub?.name}</h3>
           </div>
           {/* <div>
             <nav aria-label="breadcrumb">
