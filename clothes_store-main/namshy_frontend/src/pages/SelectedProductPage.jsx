@@ -30,7 +30,7 @@ function SelectedProductPage({ products, handleClick }) {
 
   return (
     <div> 
-      <Header></Header>
+      <Header visible={false} ></Header>
     <div
       className="viewcontainer justify-content-center   "
       style={{ position: "relative", top: "70px" }}
@@ -110,7 +110,7 @@ function SelectedProductPage({ products, handleClick }) {
                   style={{ fontSize: "18px" }}
                 >
                   {" "}
-                  <div className=" mx-2">{selected?.price} </div>
+                  <div className=" mx-2">{selected?.price_after} </div>
                 </div>
               </div>
               {/*  */}
@@ -251,7 +251,7 @@ function SelectedProductPage({ products, handleClick }) {
                 <div
                   style={{ borderBottom: " 1px solid gray", textAlign: "left" }}
                 >
-                  Description : {selected?.desc}
+                  Description : {selected?.desc?.description}
                  </div>
                               </div>
           
@@ -304,7 +304,7 @@ function SelectedProductPage({ products, handleClick }) {
                 </div>
                 <div className=" w-75">
                   <div className=" m-3 w-75" style={{ textAlign: "left" }}>
-                    {selected?.brand}
+                    {selected?.desc?.brand?.name}
                   </div>
                  
                 </div>

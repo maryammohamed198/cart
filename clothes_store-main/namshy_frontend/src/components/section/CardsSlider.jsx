@@ -81,8 +81,8 @@ export function CardsSlider() {
           >
             <div className=" d-flex flex-column align-items-start">
               <Card.Title className="mb-0">{product.name}</Card.Title>
-              <Card.Text className="mb-0">Price: {product.price}</Card.Text>
-              <Card.Text> {product.desc}</Card.Text>
+              <Card.Text className="mb-0">Price: {product.price_before}</Card.Text>
+              <Card.Text> {product.desc.descreption}</Card.Text>
             </div>
             <span
               className="  h-75 "

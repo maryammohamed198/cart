@@ -33,9 +33,9 @@ function ResponsiveNavbar({ onMenuClick }) {
 }
 
 export function NavBar({visible = true}) {
-  const [language, setLanguage] = React.useState("en-US");
+  const [language] = React.useState("en-US");
   const [categories, setCategories] = useState([])
-  var audio = new Audio();
+
   const [isActive, setIsActive] = React.useState(false);
   const { startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({
@@ -75,12 +75,12 @@ export function NavBar({visible = true}) {
       speechToText();
     }
   }, [mediaBlobUrl]);
-  const currentpage = window.location.pathname.split('/')[1];
+  const currentpage = window.location.pathname.split('/')[2];
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const handleLinkClick = (href) => {
+  const handleLinkClick = (href,name) => {
     
-    navigate(href);
+    navigate(href,{state:{name:name}});
   };
 
   const linkStyle = {
@@ -160,92 +160,25 @@ export function NavBar({visible = true}) {
             </div>
             {/* <div href={"#cart"} style={{marginLeft:'3%'}} onClick={() => setShow(false)}><ShoppingBagOutlinedIcon /></div>  */}
             <div className="hell" style={{width:"50%",display:"flex",flexDirection:"row" ,overflowY:"auto"}}>
-              <div
-                href="/premiumCategory"
+              {categories.map((category)=>(<div
+                href={'/cat/'+category.name}
                 style={{
                   ...linkStyle,
                   background:
-                    currentpage === "premiumCategory"
+                    currentpage === category._id
                       ? "white"
                       : "transparent",
                   color:
-                    currentpage === "premiumCategory"
+                    currentpage === category._id
                       ? "black"
                       : "white",
                 }}
-                onClick={() => handleLinkClick("/premiumCategory")}
+                onClick={() => handleLinkClick('/cat/'+category._id,category.name)}
                 className="navhover navclick"
               >
-                Premium
-              </div>
-              <div
-                href="/kids"
-                style={{
-                  ...linkStyle,
-                  background:
-                    currentpage === "kids"
-                      ? "white"
-                      : "transparent",
-                  color:
-                    currentpage === "kids" ? "black" : "white",
-                }}
-                onClick={() => handleLinkClick("/kids")}
-                className="navhover navclick"
-              >
-                Kids
-              </div>
-              <div
-              className="navhover navclick"
-                href="/beauty"
-                style={{
-                  ...linkStyle,
-                  background:
-                    currentpage === "beauty"
-                      ? "white"
-                      : "transparent",
-                  color:
-                    currentpage === "beauty" ? "black" : "white",
-                  whiteSpace: "nowrap",
-                }}
-                onClick={() => handleLinkClick("/beauty")}
-              >
-                Beauty
-              </div>
-              <div
-                href="/"
-                style={{
-                  ...linkStyle,
-                  background:
-                    currentpage === "men"
-                      ? "white"
-                      : "transparent",
-                  color:
-                    currentpage === "men"
-                      ? "black"
-                      : "white",
-                }}
-                onClick={() => handleLinkClick("/men")}
-                className="navhover navclick"
-              >
-                Men
-              </div>
-              <div
-                href="/women"
-                style={{
-                  ...linkStyle,
-                  background:
-                    currentpage === "women"
-                      ? "white"
-                      : "transparent",
-                  color:
-                    currentpage === "women" ? "black" : "white",
-                  whiteSpace: "nowrap",
-                }}
-                onClick={() => handleLinkClick("/women")}
-                className="navhover navclick"
-              >
-                Women
-              </div>
+                {category.name}
+              </div>))}
+             
             </div>
             <Navbar.Brand>
               

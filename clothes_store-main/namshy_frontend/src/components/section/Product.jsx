@@ -61,7 +61,7 @@ export function Product({product, index}) {
                 >
                     <div className="d-flex flex-column align-items-start ">
                         <Card.Title className="mb-0">{product.name}</Card.Title>
-                        <Card.Text className="mb-0">Price: {product.price}</Card.Text>
+                        <Card.Text className="mb-0">Price: {product.price_after}</Card.Text>
                     </div>
                     <div>
                         <button

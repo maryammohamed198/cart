@@ -6,17 +6,17 @@ import * as product from "../../api/product";
 import Product from "./Product";
 import './homecard.css'
 export default function Homecards(
-  { category_id, category_name }
+  {  type_name }
   ) {
- 
+  const category_id = window.location.pathname.split('/')[2];
   const [products, setProducts] = useState([]);
-  console.log('prpp',products.length)
   const [filter, setFilter] = useState("");
   useEffect(() => {
     const getProducts = async () => {
-      await product.get_product_by_category(category_id).then((e) => {
-       
-        setProducts(e);
+
+      await product.get_product_by_type(category_id,type_name).then((e) => {
+
+        setProducts(e.response);
       });
        
     };
@@ -48,7 +48,7 @@ export default function Homecards(
           <div style={{ display: "inline-flex", fontSize: "2rem" }}>
             <i class="bi bi-handbag-fill " style={{ marginLeft: "30px" }}></i>
             <h5 style={{ display: "inline-flex", padding: "13px" , whiteSpace: "nowrap",}}>
-              {category_name}
+              {type_name}
             </h5>
           </div>
           <div style={{ display: "inline-flex", width: "100%", height: "75%","margin-left":"11%" }}>
